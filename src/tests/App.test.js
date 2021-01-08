@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import App from '../containers/App';
 
-test('renders learn react link', () => {
+test('renders Clip OpenPay App text', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
+  const linkElement = getByText(/Clip OpenPay App/i);
   expect(linkElement).toBeInTheDocument();
 });
