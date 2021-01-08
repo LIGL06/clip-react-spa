@@ -1,12 +1,15 @@
 // Deps
 import axios from 'axios';
 import { push } from 'connected-react-router';
+import { createCustomer, createCustomerFulfilled } from "./Customers";
 // Types
 const GET_PAYMENTS = 'GET_PAYMENTS';
 const GET_PAYMENT = 'GET_PAYMENT';
+const POST_PAYMENT = 'POST_PAYMENT';
 const PUT_PAYMENT = 'PUT_PAYMENTS';
 const GET_PAYMENTS_FULFILLED = 'GET_PAYMENTS_FULFILLED';
 const GET_PAYMENT_FULFILLED = 'GET_PAYMENT_FULFILLED';
+const POST_PAYMENT_FULFILLED = 'POST_PAYMENT_FULFILLED';
 const PUT_PAYMENT_FULFILLED = 'PUT_PAYMENT__FULFILLED';
 // Actions
 export const fetchPayments = () => ({
@@ -20,6 +23,10 @@ export const fetchPayment = (id) => {
   }
 };
 
+export const createPayment = () => ({
+  type: POST_PAYMENT
+});
+
 export const updatePayment = () => {
   return {
     type: PUT_PAYMENT
@@ -30,6 +37,13 @@ export const fetchPaymentFulfilled = PAYMENT => {
   return {
     type: GET_PAYMENT_FULFILLED,
     PAYMENT
+  }
+};
+
+export const createPaymentFulfilled = customer => {
+  return {
+    type: POST_PAYMENT_FULFILLED,
+    customer
   }
 };
 
@@ -59,6 +73,15 @@ export const getPAYMENT = (id) => async (dispatch) => {
     const payment = res.data;
     dispatch(fetchPaymentFulfilled(payment));
   }).catch(error => alert('Error al obtener pago'));
+};
+
+export const postPayment = (payment) => async (dispatch) => {
+  console.log(payment);
+  dispatch(createPayment(payment));
+  await axios.post('/api/payments').then(res => {
+    const payment = res.data;
+    dispatch(createPaymentFulfilled(payment));
+  }).catch(error => alert('Error al crear pago'));
 };
 
 // Duck Update User
