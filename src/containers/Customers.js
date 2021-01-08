@@ -9,6 +9,7 @@ class Customers extends React.Component {
   render() {
     return(
       <>
+        <hr className="mb-4"/>
         <h2>Mis Clientes</h2>
         <div className="table-responsive">
           <table className="table table-striped table-sm">

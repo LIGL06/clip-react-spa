@@ -28,6 +28,11 @@ const Sidebar = ({user}) => (
               <i className="fas fa-money-bill-alt" />&nbsp;Nuevo Pago
           </NavLink>
         </li>
+        <li>
+          <NavLink className="nav-link" to="/new/customer">
+            <i className="fas fa-user-alt" />&nbsp;Nuevo Cliente
+          </NavLink>
+        </li>
       </ul>
       </div>
   </nav>

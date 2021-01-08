@@ -9,6 +9,7 @@ class Payments extends React.Component {
   render() {
     return(
       <>
+        <hr className="mb-4"/>
         <h2>Mis Pagos</h2>
         <div className="table-responsive">
           <table className="table table-striped table-sm">
