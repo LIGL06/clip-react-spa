@@ -1,21 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = ({user}) => (
-  <div className="home">
-    <h1>¡Hola, {user && user.legalName ? user.legalName.split(' ')[0] : ''}!</h1>
-    <h2>¿Qué deseas hacer?</h2>
-    <span className="spacer" />
-    <div className="shortcuts">
-      <Link to={"/customers"} className="shortcut">
-        <i className="fas fa-user-clock fa-2x" />
-        &nbsp;Mis Clientes
-      </Link>
-      <Link to={"/payments"} className="shortcut">
-        <i className="fas fa-user-clock fa-2x" />
-        &nbsp;Mis Pagos
-      </Link>
-    </div>
+const Home = ({ user }) => (
+  <div className="container text-center mt-5">
+    <h2>¡Hola, {user && user.legalName ? user.legalName.split(' ')[0] : ''}!</h2>
+    <p className="lead text-muted">
+      Lorem
+    </p>
+    <Link className="btn btn-primary btn-lg m-3" to="/customers">
+      <i className="fas fa-users" />&nbsp; Mis Clientes
+    </Link>
+    <Link className="btn btn-primary btn-lg m-3" to="/payments">
+      <i className="fas fa-piggy-bank" />&nbsp; Mis Pagos
+    </Link>
   </div>
 );
 

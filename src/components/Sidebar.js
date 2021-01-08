@@ -13,7 +13,7 @@ const Sidebar = ({user}) => (
         </li>
         <li>
           <NavLink className="nav-link" to={"/customers"}>
-            <i className="fas fa-user-clock" />
+            <i className="fas fa-users" />
             &nbsp;Mis Clientes
           </NavLink>
         </li>
