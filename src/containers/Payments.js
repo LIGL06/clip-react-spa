@@ -1,12 +1,36 @@
 // Deps
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+// Actions
+import { getPayments } from '../actions/Payments';
 // Components
 import Payment from '../components/Payment';
+import Loader from "../components/Loader";
 // Mock Models
 import MockPayment from '../models/Charge';
 
 class Payments extends React.Component {
+  static propTypes = {
+    getPayments: PropTypes.func.isRequired
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    }
+  }
+
+  componentDidMount() {
+    this.props.getPayments().then(() => {
+      this.setState({ loading: false });
+    });
+  }
+
   render() {
+    const { payments } = this.props;
+    const { loading } = this.state;
     return (
       <>
         <hr className="mb-4" />
@@ -33,6 +57,19 @@ class Payments extends React.Component {
               <td>Simón</td>
             </tr>
             <Payment payment={MockPayment} />
+            {
+              payments.length ? (
+                <>
+                  {
+                    loading ? (
+                      <Loader />
+                    ) : (
+                      payments.map(customer => <Payment customer={customer} />)
+                    )
+                  }
+                </>
+              ) : null
+            }
             </tbody>
           </table>
         </div>
@@ -41,4 +78,8 @@ class Payments extends React.Component {
   }
 }
 
-export default Payments;
+const mapStateToProps = state => ({
+  ...state.payments
+});
+
+export default connect(mapStateToProps, { getPayments })(Payments);

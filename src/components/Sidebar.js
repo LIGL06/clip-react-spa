@@ -24,13 +24,13 @@ const Sidebar = ({user}) => (
           </NavLink>
         </li>
         <li>
-          <NavLink className="nav-link" to="/new/payment">
-            <i className="fas fa-money-bill-alt" />&nbsp;Nuevo Pago
+          <NavLink className="nav-link" to="/new/customer">
+            <i className="fas fa-user-alt" />&nbsp;Nuevo Cliente
           </NavLink>
         </li>
         <li>
-          <NavLink className="nav-link" to="/new/customer">
-            <i className="fas fa-user-alt" />&nbsp;Nuevo Cliente
+          <NavLink className="nav-link" to="/new/payment">
+            <i className="fas fa-money-bill-alt" />&nbsp;Nuevo Pago
           </NavLink>
         </li>
       </ul>

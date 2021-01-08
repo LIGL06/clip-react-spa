@@ -7,11 +7,17 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.21.1",
+    "connected-react-router": "^6.8.0",
+    "history": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "redux": "^4.0.5",
+    "redux-form": "^8.3.7",
+    "redux-thunk": "^2.3.0",
     "serve": "^11.3.2"
   },
   "scripts": {
@@ -35,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
   }
 }
