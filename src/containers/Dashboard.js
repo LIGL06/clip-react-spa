@@ -18,21 +18,21 @@ class Dashboard extends React.Component {
         legalName: 'Luis Iván García Luna'
       }
     };
-    const { user } = session;
-    if (!session) return <Redirect to="/login"/>;
+    const {user} = session;
+    if (!session) return <Redirect to="/login" />;
     return (
       <>
-        <Header user={user}/>
+        <Header user={user} />
         <div className="container-fluid">
           <div className="row">
             <Sidebar user={user} />
             <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
               <Switch>
-                <Route path="/new/customer" component={ NewCustomer }/>
-                <Route path="/new/payment" component={ NewPayment }/>
-                <Route path="/payments" component={ Payments }/>
-                <Route path="/customers" component={ Customers }/>
-                <Route path="/" component={ () => <Home user={user}/> }/>
+                <Route path="/new/customer" component={NewCustomer} />
+                <Route path="/new/payment" component={NewPayment} />
+                <Route path="/payments" component={Payments} />
+                <Route path="/customers" component={Customers} />
+                <Route path="/" component={() => <Home user={user} />} />
               </Switch>
             </main>
           </div>

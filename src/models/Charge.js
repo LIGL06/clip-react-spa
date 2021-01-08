@@ -8,9 +8,9 @@ const Charge = {
     "expiration_month": "12",
     "cvv2": "110",
   },
-  amount : 200.00,
-  description : "Service Charge",
-  order_id : "oid-00721"
+  amount: 200.00,
+  description: "Service Charge",
+  order_id: "oid-00721"
 }
 
 export default Charge;

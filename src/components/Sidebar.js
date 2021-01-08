@@ -7,7 +7,7 @@ const Sidebar = ({user}) => (
       <ul className="nav flex-column">
         <li className="nav-item">
           <Link className="nav-link active" to="/">
-            <i className="fas fa-money-bill-wave fa-2x"/>
+            <i className="fas fa-money-bill-wave fa-2x" />
             &nbsp;Clip 'N Pay
           </Link>
         </li>
@@ -25,7 +25,7 @@ const Sidebar = ({user}) => (
         </li>
         <li>
           <NavLink className="nav-link" to="/new/payment">
-              <i className="fas fa-money-bill-alt" />&nbsp;Nuevo Pago
+            <i className="fas fa-money-bill-alt" />&nbsp;Nuevo Pago
           </NavLink>
         </li>
         <li>
@@ -34,7 +34,7 @@ const Sidebar = ({user}) => (
           </NavLink>
         </li>
       </ul>
-      </div>
+    </div>
   </nav>
 );
 
