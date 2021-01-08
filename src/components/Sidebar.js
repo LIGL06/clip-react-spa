@@ -2,48 +2,35 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 const Sidebar = ({user}) => (
-  <div className="sidebar hide-on-med-and-down">
-    <Link className="logo center-md" to="/">
-      <i className="fas fa-history fa-5x"  style={{color:"#C28662", paddingBottom: 10}} />
-      <h1 style={{color:"#fff"}}>Time control</h1>
-    </Link>
-    <nav>
-      <li>
-        {
-          user.admin ? (
-            <NavLink to="/new">
-          <i className="fas fa-user-plus" />
-          &nbsp;Nuevo Empleado
-        </NavLink>
-          ) : (
-            <NavLink to={"/employees/" + user.id}>
+  <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div className="sidebar-sticky pt-3">
+      <ul className="nav flex-column">
+        <li className="nav-item">
+          <Link className="nav-link active" to="/">
+            <i className="fas fa-money-bill-wave fa-2x"/>
+            &nbsp;Clip 'N Pay
+          </Link>
+        </li>
+        <li>
+          <NavLink className="nav-link" to={"/customers"}>
             <i className="fas fa-user-clock" />
-            &nbsp;Mi Reporte
-            </NavLink>
-          )
-        }
-      </li>
-      <li>
-        {
-          user.admin ? (
-            <NavLink to="/employees">
-                <i className="fas fa-users" />
-                &nbsp;Mis Empleados
-            </NavLink>
-          ) : (
-          false
-          )
-        }
-      </li>
-      <li className="scrollable-nav">  
-      </li>
-    </nav>
-    <nav className="extra">
-      <li>
-        {/* Algo extra */}
-      </li>
-    </nav>
-  </div>
+            &nbsp;Mis Clientes
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="nav-link" to={"/payments"}>
+            <i className="fas fa-piggy-bank" />
+            &nbsp;Mis Pagos
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="nav-link" to="/new/payment">
+              <i className="fas fa-money-bill-alt" />&nbsp;Nuevo Pago
+          </NavLink>
+        </li>
+      </ul>
+      </div>
+  </nav>
 );
 
 export default Sidebar;

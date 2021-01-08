@@ -11,7 +11,6 @@ if (localStorage.token) {
 function App() {
   return (
     <>
-      <h1>Clip OpenPay App</h1>
       <Router>
         <Switch>
           <Route path="/" component={ Dashboard }/>

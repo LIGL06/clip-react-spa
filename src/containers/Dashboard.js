@@ -3,8 +3,8 @@ import React from 'react';
 import { Route, Redirect, Switch } from 'react-router';
 // Containers
 // import NewPayment from './NewPayment';
-// import PaymentPreview from './PaymentPreview';
-// import Payments from './Payments';
+import Payments from './Payments';
+import Customers from './Customers';
 // Components
 import Home from '../components/Home';
 import Header from '../components/Header';
@@ -21,16 +21,18 @@ class Dashboard extends React.Component {
     if (!session) return <Redirect to="/login"/>;
     return (
       <>
-        <Sidebar user={user} />
         <Header user={user}/>
-        <div className="dashboard">
-          <div className="container">
-            <Switch>
-              {/* <Route path="/new" component={ NewPayment }/> */}
-              {/* <Route path="/payments/:id" component={ PaymentPreview }/> */}
-              {/* <Route path="/payments" component={ Payments }/> */}
-              <Route path="/" component={ () => <Home user={user}/> }/>
-            </Switch>
+        <div className="container-fluid">
+          <div className="row">
+            <Sidebar user={user} />
+            <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+              <Switch>
+                {/* <Route path="/new" component={ NewPayment }/> */}
+                <Route path="/payments" component={ Payments }/>
+                <Route path="/customers" component={ Customers }/>
+                <Route path="/" component={ () => <Home user={user}/> }/>
+              </Switch>
+            </main>
           </div>
         </div>
       </>
