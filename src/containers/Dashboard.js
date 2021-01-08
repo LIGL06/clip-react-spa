@@ -2,7 +2,7 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router';
 // Containers
-// import NewPayment from './NewPayment';
+import NewPayment from './NewPayment';
 import Payments from './Payments';
 import Customers from './Customers';
 // Components
@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
             <Sidebar user={user} />
             <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
               <Switch>
-                {/* <Route path="/new" component={ NewPayment }/> */}
+                <Route path="/new" component={ NewPayment }/>
                 <Route path="/payments" component={ Payments }/>
                 <Route path="/customers" component={ Customers }/>
                 <Route path="/" component={ () => <Home user={user}/> }/>

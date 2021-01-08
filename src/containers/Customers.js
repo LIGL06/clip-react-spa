@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import Customer from '../components/Customer';
 // Mock Models
-import MockCustomer from '../models/Customer'
+import MockCustomer from '../models/Customer';
 
 class Customers extends React.Component {
   render() {

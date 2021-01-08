@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import Payment from '../components/Payment';
 // Mock Models
-import MockPayment from '../models/Charge'
+import MockPayment from '../models/Charge';
 
 class Payments extends React.Component {
   render() {
