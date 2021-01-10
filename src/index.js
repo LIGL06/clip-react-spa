@@ -10,6 +10,11 @@ import * as serviceWorker from './serviceWorker';
 
 let store = confStore();
 
+if (localStorage.session) {
+  const session = JSON.parse(localStorage.session);
+  store = confStore({ session });
+}
+
 if (localStorage.token) {
   axios.defaults.headers.common['X-Jwt-Token'] = localStorage.token;
 }

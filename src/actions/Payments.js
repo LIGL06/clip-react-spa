@@ -1,12 +1,11 @@
 // Deps
 import axios from 'axios';
 import { push } from 'connected-react-router';
-import { createCustomer, createCustomerFulfilled } from "./Customers";
 // Types
 const GET_PAYMENTS = 'GET_PAYMENTS';
 const GET_PAYMENT = 'GET_PAYMENT';
 const POST_PAYMENT = 'POST_PAYMENT';
-const PUT_PAYMENT = 'PUT_PAYMENTS';
+const PUT_PAYMENT = 'PUT_PAYMENT';
 const GET_PAYMENTS_FULFILLED = 'GET_PAYMENTS_FULFILLED';
 const GET_PAYMENT_FULFILLED = 'GET_PAYMENT_FULFILLED';
 const POST_PAYMENT_FULFILLED = 'POST_PAYMENT_FULFILLED';
@@ -40,23 +39,23 @@ export const fetchPaymentFulfilled = PAYMENT => {
   }
 };
 
-export const createPaymentFulfilled = customer => {
+export const createPaymentFulfilled = payment => {
   return {
     type: POST_PAYMENT_FULFILLED,
-    customer
+    payment
   }
 };
 
-export const updatePaymentFulfilled = PAYMENT => {
+export const updatePaymentFulfilled = payment => {
   return {
     type: PUT_PAYMENT_FULFILLED,
-    PAYMENT
+    payment
   }
 };
 
-export const fetchPaymentsFulfilled = PAYMENTs => ({
+export const fetchPaymentsFulfilled = payments => ({
   type: GET_PAYMENTS_FULFILLED,
-  PAYMENTs
+  payments
 });
 
 export const getPayments = () => async (dispatch) => {

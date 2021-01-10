@@ -5,7 +5,7 @@ const Header = ({ user }) => (
   <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow ">
     <Link to="/" className="navbar-brand col-md-3 col-lg-2 mr-0 px-3">
       <i className="far fa-user" />
-      <span>&nbsp;{user.legalName}</span>
+      <span>&nbsp;{user.name}</span>
     </Link>
     <ul className="navbar-nav px-3s">
       <li className="nav-item text-nowrap">

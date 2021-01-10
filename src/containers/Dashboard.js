@@ -1,5 +1,6 @@
 // Deps
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router';
 // Containers
 import NewPayment from './NewPayment';
@@ -12,14 +13,15 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+
   render() {
-    const session = {
-      user: {
-        legalName: 'Luis Iván García Luna'
-      }
-    };
-    const {user} = session;
+    const { session } = this.props;
     if (!session) return <Redirect to="/login" />;
+    const { user } = session;
     return (
       <>
         <Header user={user} />
@@ -42,4 +44,8 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  ...state.session
+});
+
+export default connect(mapStateToProps)(Dashboard);

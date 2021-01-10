@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-const Sidebar = ({user}) => (
+const Sidebar = ({ user }) => (
   <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div className="sidebar-sticky pt-3">
       <ul className="nav flex-column">
         <li className="nav-item">
           <Link className="nav-link active" to="/">
-            <i className="fas fa-money-bill-wave fa-2x" />
-            &nbsp;Clip 'N Pay
+            <p className="font-weight-bold text-muted"><i className="fas fa-money-bill-wave" />
+              &nbsp;Clip 'N Pay</p>
           </Link>
         </li>
         <li>

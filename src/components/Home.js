@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Home = ({ user }) => (
   <div className="container text-center mt-5">
-    <h2>¡Hola, {user && user.legalName ? user.legalName.split(' ')[0] : ''}!</h2>
+    <h2>¡Hola, {user && user.name ? user.name.split(' ')[0] : ''}!</h2>
     <p className="lead text-muted">
       Lorem
     </p>
