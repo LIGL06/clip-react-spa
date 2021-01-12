@@ -1,6 +1,7 @@
 // Deps
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 // Components
 import PaymentForm from '../../components/Payments/PaymentForm';
 // Actions
@@ -8,17 +9,21 @@ import { postPayment } from "../../actions/Payments";
 import { getCustomers } from "../../actions/Customers";
 
 class NewPayment extends React.Component {
-  state = {
-    message: '',
-    loading: false
+  static propTypes = {
+    getCustomers: PropTypes.func.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    }
+  }
+
   componentDidMount() {
-    getCustomers()
-    const { dispatch } = this.props;
-    dispatch(
-      getCustomers()
-    );
+    this.props.getCustomers().then(() => {
+      this.setState({ loading: false });
+    });
   }
 
   handleSubmit = (values) => {
@@ -29,20 +34,22 @@ class NewPayment extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const { customers } = this.props;
+    const { loading } = this.state;
     return (
       <>
         <hr className="mb-4" />
         <h2>Nuevo Pago</h2>
-        <PaymentForm onSubmit={this.handleSubmit} customers={customers} />
+        <PaymentForm onSubmit={this.handleSubmit} customers={customers} loading={loading} />
       </>
     );
   }
+
 }
 
-const mapStateToProps = (state) => ({
-  payment: state.payment
+const mapStateToProps = state => ({
+  ...state.payment,
+  ...state.customers
 });
 
-export default connect(mapStateToProps)(NewPayment);
+export default connect(mapStateToProps, { getCustomers })(NewPayment);

@@ -1,12 +1,12 @@
 // Dependencies
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from "react-router";
 // Components
 import LoginForm from '../components/LoginForm';
 // Actions
 import { postLogin } from '../actions/Session';
 import Loader from "../components/Loader";
-import { Redirect } from "react-router";
 
 class Login extends Component {
   state = {

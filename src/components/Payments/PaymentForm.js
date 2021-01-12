@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { renderedField } from "../renderedField";
+import Loader from "../Loader";
 
 class PaymentForm extends Component {
   render() {
-    const customers = [];
-    const { error, handleSubmit } = this.props;
+    const { error, handleSubmit, customers, loading } = this.props;
     return (
       <form onSubmit={handleSubmit} className="container">
         <div className="row">
           <div className="col-md-6 mb-3">
             <label>Cliente:</label>
-            <select className="form-control" name="client">
-              <option value="1">1</option>
-              {
-                customers.length ? (
-                  customers.map(customer => <option value={customer.id}>{customer.name}</option>)
-                ) : null
-              }
-            </select>
-            <Field name="name" component={renderedField} type="text" label="Nombre(s) del Tarjeta Habiente:"
-                   placeholder="Ej. John Doe" />
+            {
+              loading ? (
+                <Loader />
+              ) : (
+                <select className="form-control" name="client">
+                  {
+                    customers.length ? (
+                      customers.map(customer => <option
+                        value={customer.id}>{customer.name} {customer.last_name}</option>)
+                    ) : null
+                  }
+                </select>
+              )
+            }
           </div>
           <div className="col-md-6 mb-3">
             <Field name="card" component={renderedField} type="text" label="Número de Tarjeta:"
-                   placeholder="Ej. 4111111111111111" />s
+                   placeholder="Ej. 4111111111111111" />
           </div>
         </div>
         <div className="row">
@@ -51,7 +55,7 @@ class PaymentForm extends Component {
 
         <hr className="mb-4" />
         <div className="row mt-5">
-          <button type="submit" className="btn btn-md btn-primary offset-md-10">Guardar Pago</button>
+          <button type="submit" className="btn btn-md btn-primary offset-md-10" disabled={loading}>Guardar Pago</button>
           {error && <strong>{error}</strong>}
         </div>
       </form>
