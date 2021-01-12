@@ -13,13 +13,9 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-
   render() {
     const { session } = this.props;
+    console.log(this.props);
     if (!session) return <Redirect to="/login" />;
     const { user } = session;
     return (

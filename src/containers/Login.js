@@ -13,9 +13,13 @@ class Login extends Component {
   };
 
   handleSubmit = (values) => {
+    const { dispatch } = this.props;
     this.setState({ loading: true });
-    this.props.postLogin(values)
-      .then(() => this.setState({ loading: false }));
+    dispatch(
+      postLogin(values)
+    ).then(() => this.setState({ loading: false })).catch(() => this.setState({ message: 'Nel pa' }));
+    // this.props.postLogin(values)
+    //   .then(() => this.setState({ loading: false }));
   };
 
   render() {
@@ -66,4 +70,4 @@ const mapStateToProps = (state) => ({
   ...state.session
 });
 
-export default connect(mapStateToProps, { postLogin })(Login);
+export default connect(mapStateToProps)(Login);

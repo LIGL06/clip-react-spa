@@ -1,8 +1,11 @@
 // Deps
 import axios from 'axios';
 import { push } from 'connected-react-router';
+// Constants
+const url = 'http://localhost:5001';
 // Types
 export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_FULFILLED = 'LOGIN_FULFILLED';
 // Actions
 export const login = () => {
@@ -18,10 +21,17 @@ export const loginFulfilled = session => {
   }
 };
 
+export const loginFailed = message => {
+  return {
+    type: LOGIN_FAILED,
+    message
+  }
+};
+
 // Duck Login
 export const postLogin = action => async (dispatch) => {
   dispatch(login());
-  await axios.post('/api/session/login', action).then(res => {
+  await axios.post(`${url}/session`, action).then(res => {
     if (res.data.token && res.data.session) {
       const { token, session } = res.data;
       dispatch(loginFulfilled(session, token));
@@ -29,8 +39,12 @@ export const postLogin = action => async (dispatch) => {
       localStorage.session = JSON.stringify(session);
       axios.defaults.headers.common['X-Jwt-Token'] = token;
       dispatch(push('/'));
+    } else {
+      dispatch(loginFailed('Ups! hubo un error'));
     }
-  }).catch(error => console.error(error.message));
+  }).catch(() => {
+    dispatch(loginFailed('Ups! hubo un error'));
+  });
 };
 // Duck Logout
 export const SessionActions = {
@@ -42,17 +56,21 @@ export const SessionActions = {
   }
 };
 // Reducer
-export default function (state = { loading: true, session: {}, newEmployee: {}, message: null }, action) {
+export default function (state = { session: {}, message: null }, action) {
   switch (action.type) {
     case LOGIN_FULFILLED:
       return {
         ...state,
-        session: action.session,
-        loading: false,
+        session: action.session
       };
     case LOGIN_START:
       return {
         ...state,
+      };
+    case LOGIN_FAILED:
+      return {
+        ...state,
+        message: action.message
       };
     default:
       return state;
