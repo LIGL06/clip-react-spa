@@ -90,7 +90,6 @@ export const putCustomer = (customer, userId) => async (dispatch) => {
   dispatch(updateCustomer());
   return axios.put(`${url}/${userId}`, customer).then(res => {
     dispatch(updateCustomerFulfilled(res.data));
-    dispatch(push('/customers'));
   }).catch(error => alert('Error al actualizar cliente'));
 };
 

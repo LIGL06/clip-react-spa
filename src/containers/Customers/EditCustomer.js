@@ -16,63 +16,88 @@ class EditCustomer extends Component {
     super(props);
     this.state = {
       message: '',
-      loading: true
+      loading: true,
+      customer: {}
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     const { match } = this.props;
     this.props.getCustomer(match.params.id).then(() => {
       this.setState({ loading: false });
-      console.log(this.props);
     });
   }
 
-  changeView = () => {
-  };
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
 
-  handleSubmit = (values) => {
-    const { match } = this.props;
-    this.props.putCustomer({}, match.params.id);
-  };
-
-  handleMomentSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    const { match } = this.props;
-    this.props.putCustomer({}, match.params.id);
+    const { customer } = this.props;
+    const { name, last_name, email, phone_number } = this.state;
+    const request = {
+      name: name && customer.name !== name ? name : customer.name,
+      last_name: last_name && customer.last_name !== last_name ? last_name : customer.last_name,
+      email: email && customer.email !== email ? email : customer.email,
+      phone_number: phone_number && customer.phone_number !== phone_number ? phone_number : customer.phone_number,
+    }
+    const { match, history } = this.props;
+    this.setState({ loading: true });
+    this.props.putCustomer(request, match.params.id).then(() => {
+      this.setState({ loading: false });
+      history.push('/clients');
+    });
   };
 
   render() {
     const { customer } = this.props;
-    const { momentStyle, loading } = this.state;
+    const { loading, message } = this.state;
     return (
       <div className="row">
         <div className="col-md-12">
           <div className="titlebar">
             <h1>Editar Cliente</h1>
-            {loading ? <Loader /> : (
-              <span className="text-muted"><i className="fas fa-user" />&nbsp;{customer.name}</span>
-            )}
-          </div>
-          {
-            momentStyle ? (
-              <form onSubmit={this.handleMomentSubmit} className="container page">
-                <div className="row">
-                  <div className="col-xs-12 col-md-4">
-                    <label htmlFor="day">Fecha y Hora</label>
-                    <input name="day" type="data" disabled />
+            {
+              loading ? <Loader /> : (
+                <form onSubmit={this.handleSubmit} className="container">
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <label>Nombre(s):</label>
+                      <input name="name" type="text" className="form-control"
+                             defaultValue={customer.name} onChange={this.handleChange} />
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <label>Apellido(s):</label>
+                      <input name="last_name" type="text" className="form-control"
+                             defaultValue={customer.last_name} onChange={this.handleChange} />
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <button type="submit" className="primary col-md-offset-9">Crear Check-Out</button>
-                </div>
-              </form>
-            ) : null
-          }
-          <div className="row">
-            <button className="neutral" onClick={this.changeView}>{
-              momentStyle ? 'Usar otra fecha y hora' : 'Usar actual'
-            }</button>
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <label>Apellido(s):</label>
+                      <input name="email" type="email" className="form-control"
+                             defaultValue={customer.email} onChange={this.handleChange} />
+                    </div>
+                    <div className="col-md-6 mb-3">
+                      <label>Apellido(s):</label>
+                      <input name="phone_number" type="number" className="form-control"
+                             defaultValue={customer.phone_number} onChange={this.handleChange} />
+                    </div>
+                  </div>
+
+                  <hr className="mb-4" />
+                  <div className="row mt-5">
+                    <button type="submit" className="btn btn-md btn-primary offset-md-10" disabled={loading}>Editar
+                      Cliente
+                    </button>
+                    {message && <strong>{message}</strong>}
+                  </div>
+                </form>
+              )
+            }
           </div>
         </div>
       </div>
