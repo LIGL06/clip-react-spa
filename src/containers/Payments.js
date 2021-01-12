@@ -8,7 +8,7 @@ import { getPayments } from '../actions/Payments';
 import Payment from '../components/Payment';
 import Loader from "../components/Loader";
 // Mock Models
-import MockPayment from '../models/Charge';
+import MockPayment from '../models/Payment';
 
 class Payments extends React.Component {
   static propTypes = {

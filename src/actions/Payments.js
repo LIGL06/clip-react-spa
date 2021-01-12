@@ -1,6 +1,8 @@
 // Deps
 import axios from 'axios';
 import { push } from 'connected-react-router';
+// Constants
+const url = 'http://localhost:5001/payments';
 // Types
 const GET_PAYMENTS = 'GET_PAYMENTS';
 const GET_PAYMENT = 'GET_PAYMENT';
@@ -60,7 +62,7 @@ export const fetchPaymentsFulfilled = payments => ({
 
 export const getPayments = () => async (dispatch) => {
   dispatch(fetchPayments());
-  await axios.get('/api/payments/list').then(res => {
+  await axios.get(url).then(res => {
     const payments = res.data;
     dispatch(fetchPaymentsFulfilled(payments));
   }).catch(error => alert('Error al obtener pagos'));
@@ -68,16 +70,15 @@ export const getPayments = () => async (dispatch) => {
 
 export const getPAYMENT = (id) => async (dispatch) => {
   dispatch(fetchPayment(id));
-  await axios.get(`/api/payments/get/${id}`).then(res => {
+  await axios.get(`${url}/${id}`).then(res => {
     const payment = res.data;
     dispatch(fetchPaymentFulfilled(payment));
   }).catch(error => alert('Error al obtener pago'));
 };
 
 export const postPayment = (payment) => async (dispatch) => {
-  console.log(payment);
   dispatch(createPayment(payment));
-  await axios.post('/api/payments').then(res => {
+  await axios.post(url).then(res => {
     const payment = res.data;
     dispatch(createPaymentFulfilled(payment));
   }).catch(error => alert('Error al crear pago'));
@@ -86,7 +87,7 @@ export const postPayment = (payment) => async (dispatch) => {
 // Duck Update User
 export const putUpdate = (action, userId) => async (dispatch) => {
   dispatch(updatePayment());
-  return axios.put(`/api/payments/update/${userId}`, action).then(res => {
+  return axios.put(`${url}/${userId}`, action).then(res => {
     dispatch(updatePaymentFulfilled(res.data));
     dispatch(push('/payments'));
   }).catch(error => alert('Error al actualizar pago'));

@@ -1,6 +1,8 @@
 // Deps
 import axios from 'axios';
 import { push } from 'connected-react-router';
+// Constants
+const url = 'http://localhost:5001/customers';
 // Types
 const GET_CUSTOMERS = 'GET_CUSTOMERS';
 const GET_CUSTOMER = 'GET_CUSTOMER';
@@ -60,7 +62,7 @@ export const fetchCustomersFulfilled = customers => ({
 
 export const getCustomers = () => async (dispatch) => {
   dispatch(fetchCustomers());
-  await axios.get('/api/customers/list').then(res => {
+  await axios.get(url).then(res => {
     const customers = res.data;
     dispatch(fetchCustomersFulfilled(customers));
   }).catch(error => alert('Error al obtener clientes'));
@@ -68,24 +70,25 @@ export const getCustomers = () => async (dispatch) => {
 
 export const getCustomer = (id) => async (dispatch) => {
   dispatch(fetchCustomer(id));
-  await axios.get(`/api/customers/get/${id}`).then(res => {
+  await axios.get(`${url}/${id}`).then(res => {
     const customer = res.data;
     dispatch(fetchCustomerFulfilled(customer));
   }).catch(error => alert('Error al obtener cliente'));
 };
 
-export const postCustomer = (customer) => async (dispatch) => {
-  dispatch(createCustomer(customer));
-  await axios.post('/api/customers').then(res => {
+export const postCustomer = customer => async (dispatch) => {
+  dispatch(createCustomer());
+  await axios.post(url, customer).then(res => {
     const customer = res.data;
     dispatch(createCustomerFulfilled(customer));
+    dispatch(push('/customers'));
   }).catch(error => alert('Error al crear cliente'));
 };
 
 // Duck Update User
-export const putUpdate = (action, userId) => async (dispatch) => {
+export const putCustomer = (customer, userId) => async (dispatch) => {
   dispatch(updateCustomer());
-  return axios.put(`/api/customers/update/${userId}`, action).then(res => {
+  return axios.put(`${url}/${userId}`, customer).then(res => {
     dispatch(updateCustomerFulfilled(res.data));
     dispatch(push('/customers'));
   }).catch(error => alert('Error al actualizar cliente'));

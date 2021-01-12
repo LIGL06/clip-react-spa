@@ -35,6 +35,7 @@ class Customers extends React.Component {
       <>
         <hr className="mb-4" />
         <h2>Mis Clientes</h2>
+        {loading ? <Loader /> : null}
         <div className="table-responsive">
           <table className="table table-striped table-sm">
             <thead>
@@ -61,11 +62,7 @@ class Customers extends React.Component {
               customers.length ? (
                 <>
                   {
-                    loading ? (
-                      <Loader />
-                    ) : (
-                      customers.map(customer => <Customer customer={customer} />)
-                    )
+                    customers.map(customer => <Customer customer={customer} key={customer.id}/>)
                   }
                 </>
               ) : null

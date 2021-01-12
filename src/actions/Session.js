@@ -34,7 +34,7 @@ export const postLogin = action => async (dispatch) => {
   await axios.post(`${url}/session`, action).then(res => {
     if (res.data.token && res.data.session) {
       const { token, session } = res.data;
-      dispatch(loginFulfilled(session, token));
+      dispatch(loginFulfilled(session));
       localStorage.token = token;
       localStorage.session = JSON.stringify(session);
       axios.defaults.headers.common['X-Jwt-Token'] = token;

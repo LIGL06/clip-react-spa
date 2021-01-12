@@ -12,6 +12,11 @@ class Login extends Component {
     loading: false
   };
 
+  componentDidMount(){
+    const { session, dispatch } = this.props;
+    if(session) dispatch(this.props.history.push('/'));
+  }
+
   handleSubmit = (values) => {
     const { dispatch } = this.props;
     this.setState({ loading: true });

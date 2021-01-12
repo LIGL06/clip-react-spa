@@ -11,11 +11,11 @@ import Customers from './Customers';
 import Home from '../components/Home';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import EditCustomer from './EditCustomer';
 
 class Dashboard extends React.Component {
   render() {
     const { session } = this.props;
-    console.log(this.props);
     if (!session) return <Redirect to="/login" />;
     const { user } = session;
     return (
@@ -28,7 +28,9 @@ class Dashboard extends React.Component {
               <Switch>
                 <Route path="/new/customer" component={NewCustomer} />
                 <Route path="/new/payment" component={NewPayment} />
+                {/* <Route path="/payments/:id" component={EditPayment} /> */}
                 <Route path="/payments" component={Payments} />
+                <Route path="/customers/:id" component={EditCustomer} />
                 <Route path="/customers" component={Customers} />
                 <Route path="/" component={() => <Home user={user} />} />
               </Switch>
