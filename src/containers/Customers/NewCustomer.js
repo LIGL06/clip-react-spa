@@ -2,9 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // Components
-import CustomerForm from "../components/CustomerForm";
+import CustomerForm from "../../components/Customers/CustomerForm";
 // Actions
-import { postCustomer } from '../actions/Customers';
+import { postCustomer } from '../../actions/Customers';
 
 class NewCustomer extends React.Component {
   state = {

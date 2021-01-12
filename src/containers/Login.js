@@ -6,25 +6,27 @@ import LoginForm from '../components/LoginForm';
 // Actions
 import { postLogin } from '../actions/Session';
 import Loader from "../components/Loader";
+import { Redirect } from "react-router";
 
 class Login extends Component {
   state = {
+    message: '',
     loading: false
   };
 
-  componentDidMount(){
-    const { session, dispatch } = this.props;
-    if(session) dispatch(this.props.history.push('/'));
+  componentDidMount() {
+    const { session } = this.props;
+    const { user } = session;
+    if (user) return <Redirect to="/" />;
   }
 
-  handleSubmit = (values) => {
-    const { dispatch } = this.props;
+  handleSubmit = async (values) => {
+    const { postLogin, history } = this.props;
     this.setState({ loading: true });
-    dispatch(
-      postLogin(values)
-    ).then(() => this.setState({ loading: false })).catch(() => this.setState({ message: 'Nel pa' }));
-    // this.props.postLogin(values)
-    //   .then(() => this.setState({ loading: false }));
+    postLogin(values).then(() => {
+      this.setState({ loading: false });
+      history.push('/');
+    });
   };
 
   render() {
@@ -75,4 +77,4 @@ const mapStateToProps = (state) => ({
   ...state.session
 });
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, { postLogin })(Login);

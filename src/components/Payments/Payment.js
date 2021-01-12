@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Payment = ({payment}) => (
+const Payment = ({ payment }) => (
   <tr>
     <td>{payment.id}</td>
     <td>{payment.method}</td>

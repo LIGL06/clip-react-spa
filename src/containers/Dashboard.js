@@ -3,15 +3,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router';
 // Containers
-import NewPayment from './NewPayment';
-import NewCustomer from './NewCustomer';
-import Payments from './Payments';
-import Customers from './Customers';
+import  NewPayment from './Payments/NewPayment';
+import NewCustomer from './Customers/NewCustomer';
+import Payments from './Payments/Payments';
+import Customers from './Customers/Customers';
 // Components
 import Home from '../components/Home';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import EditCustomer from './EditCustomer';
+import EditCustomer from './Customers/EditCustomer';
 
 class Dashboard extends React.Component {
   render() {

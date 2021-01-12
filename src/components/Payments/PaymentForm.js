@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { renderedField } from "./renderedField";
+import { renderedField } from "../renderedField";
 
 class PaymentForm extends Component {
   render() {
+    const customers = [];
     const { error, handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit} className="container">
         <div className="row">
           <div className="col-md-6 mb-3">
+            <label>Cliente:</label>
+            <select className="form-control" name="client">
+              <option value="1">1</option>
+              {
+                customers.length ? (
+                  customers.map(customer => <option value={customer.id}>{customer.name}</option>)
+                ) : null
+              }
+            </select>
             <Field name="name" component={renderedField} type="text" label="Nombre(s) del Tarjeta Habiente:"
                    placeholder="Ej. John Doe" />
           </div>

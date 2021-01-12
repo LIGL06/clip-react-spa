@@ -43,5 +43,14 @@
     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://js.openpay.mx/openpay.v1.min.js"></script>
+    <script type='text/javascript' src="https://js.openpay.mx/openpay-data.v1.min.js"></script>
+    <script type="text/javascript">
+      OpenPay.setId('mto5p9ybzrgnftxeeicz');
+      OpenPay.setApiKey('pk_768f7da9b7ef45a2897c83e9633849d2');
+      OpenPay.setSandboxMode(true);
+      var deviceSessionId = OpenPay.deviceData.setup();
+      localStorage.deviceSessionId = deviceSessionId;
+    </script>
   </body>
 </html>

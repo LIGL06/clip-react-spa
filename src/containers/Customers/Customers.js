@@ -3,12 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // Actions
-import { getCustomers } from '../actions/Customers';
+import { getCustomers } from '../../actions/Customers';
 // Components
-import Customer from '../components/Customer';
-import Loader from "../components/Loader";
-// Mock Models
-import MockCustomer from '../models/Customer';
+import Customer from '../../components/Customers/Customer';
+import Loader from "../../components/Loader";
 
 class Customers extends React.Component {
   static propTypes = {
@@ -35,7 +33,6 @@ class Customers extends React.Component {
       <>
         <hr className="mb-4" />
         <h2>Mis Clientes</h2>
-        {loading ? <Loader /> : null}
         <div className="table-responsive">
           <table className="table table-striped table-sm">
             <thead>
@@ -49,26 +46,22 @@ class Customers extends React.Component {
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>999</td>
-              <td>Luis Iván</td>
-              <td>García Luna</td>
-              <td>luis.garcialuna@outlook.com</td>
-              <td>8334114394</td>
-              <td>{JSON.stringify(MockCustomer.address)}</td>
-            </tr>
-            <Customer customer={MockCustomer} />
             {
               customers.length ? (
                 <>
                   {
-                    customers.map(customer => <Customer customer={customer} key={customer.id}/>)
+                    customers.map(customer => <Customer customer={customer} key={customer.id} />)
                   }
                 </>
               ) : null
             }
             </tbody>
           </table>
+          <div className="row">
+            <div className="col-md-4 offset-md-5">
+              {loading ? <Loader /> : null}
+            </div>
+          </div>
         </div>
       </>
     );

@@ -1,5 +1,8 @@
+// Deps
 import React from 'react';
 import { Link } from 'react-router-dom';
+// Actions
+import { SessionActions } from "../actions/Session";
 
 const Header = ({ user }) => (
   <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow ">
@@ -9,8 +12,8 @@ const Header = ({ user }) => (
     </Link>
     <ul className="navbar-nav px-3s">
       <li className="nav-item text-nowrap">
-        <Link className="navbar-nav px-3" style={{ color: '#fff' }} to="/">
-          <span><i className="fas fa-sign-out-alt" />&nbsp;Cerrar Sesión</span>
+        <Link to="/logout" className="navbar-nav px-3" style={{ color: '#fff' }}>
+          <span onClick={SessionActions.logout}><i className="fas fa-sign-out-alt" />&nbsp;Cerrar Sesión</span>
         </Link>
       </li>
     </ul>

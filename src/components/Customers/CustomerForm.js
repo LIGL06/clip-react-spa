@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { renderedField } from "./renderedField";
+import { renderedField } from "../renderedField";
 
 class CustomerForm extends Component {
   render() {

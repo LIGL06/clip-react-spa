@@ -1,6 +1,5 @@
 // Deps
 import axios from 'axios';
-import { push } from 'connected-react-router';
 // Constants
 const url = 'http://localhost:5001';
 // Types
@@ -38,7 +37,6 @@ export const postLogin = action => async (dispatch) => {
       localStorage.token = token;
       localStorage.session = JSON.stringify(session);
       axios.defaults.headers.common['X-Jwt-Token'] = token;
-      dispatch(push('/'));
     } else {
       dispatch(loginFailed('Ups! hubo un error'));
     }
@@ -65,7 +63,7 @@ export default function (state = { session: {}, message: null }, action) {
       };
     case LOGIN_START:
       return {
-        ...state,
+        ...state
       };
     case LOGIN_FAILED:
       return {

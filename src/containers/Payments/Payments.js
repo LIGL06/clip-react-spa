@@ -3,12 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // Actions
-import { getPayments } from '../actions/Payments';
+import { getPayments } from '../../actions/Payments';
 // Components
-import Payment from '../components/Payment';
-import Loader from "../components/Loader";
-// Mock Models
-import MockPayment from '../models/Payment';
+import Payment from '../../components/Payments/Payment';
+import Loader from "../../components/Loader";
 
 class Payments extends React.Component {
   static propTypes = {
@@ -48,15 +46,6 @@ class Payments extends React.Component {
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>1001</td>
-              <td>Tarjeta</td>
-              <td>1234</td>
-              <td>Comprando pizzas</td>
-              <td>1234-f</td>
-              <td>Simón</td>
-            </tr>
-            <Payment payment={MockPayment} />
             {
               payments.length ? (
                 <>
@@ -72,6 +61,11 @@ class Payments extends React.Component {
             }
             </tbody>
           </table>
+          <div className="row">
+            <div className="col-md-4 offset-md-5">
+              {loading ? <Loader /> : null}
+            </div>
+          </div>
         </div>
       </>
     );

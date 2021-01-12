@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // Components
-import Loader from "../components/Loader";
+import Loader from "../../components/Loader";
 // Actions
-import { putCustomer, getCustomer } from '../actions/Customers';
+import { putCustomer, getCustomer } from '../../actions/Customers';
 
 class EditCustomer extends Component {
   static propTypes = {
@@ -33,21 +33,17 @@ class EditCustomer extends Component {
 
   handleSubmit = (values) => {
     const { match } = this.props;
-    this.props.putCustomer({
-      
-    }, match.params.id);
+    this.props.putCustomer({}, match.params.id);
   };
 
   handleMomentSubmit = (event) => {
     event.preventDefault();
     const { match } = this.props;
-    this.props.putCustomer({
-      
-    }, match.params.id);
+    this.props.putCustomer({}, match.params.id);
   };
 
   render() {
-    const {customer} = this.props;
+    const { customer } = this.props;
     const { momentStyle, loading } = this.state;
     return (
       <div className="row">
@@ -55,16 +51,16 @@ class EditCustomer extends Component {
           <div className="titlebar">
             <h1>Editar Cliente</h1>
             {loading ? <Loader /> : (
-              <span className="text-muted"><i className="fas fa-user"/>&nbsp;{customer.name}</span>
+              <span className="text-muted"><i className="fas fa-user" />&nbsp;{customer.name}</span>
             )}
           </div>
           {
             momentStyle ? (
-              <form onSubmit={ this.handleMomentSubmit } className="container page">
+              <form onSubmit={this.handleMomentSubmit} className="container page">
                 <div className="row">
                   <div className="col-xs-12 col-md-4">
                     <label htmlFor="day">Fecha y Hora</label>
-                    <input name="day" type="data" disabled/>
+                    <input name="day" type="data" disabled />
                   </div>
                 </div>
                 <div className="row">
@@ -74,7 +70,7 @@ class EditCustomer extends Component {
             ) : null
           }
           <div className="row">
-            <button className="neutral" onClick={ this.changeView }>{
+            <button className="neutral" onClick={this.changeView}>{
               momentStyle ? 'Usar otra fecha y hora' : 'Usar actual'
             }</button>
           </div>
@@ -84,9 +80,9 @@ class EditCustomer extends Component {
   }
 }
 
-const mapStateToProps = (state) => ( {
+const mapStateToProps = (state) => ({
   session: state.session,
   customer: state.customers.customer,
-} );
+});
 
 export default connect(mapStateToProps, { getCustomer, putCustomer })(EditCustomer);
