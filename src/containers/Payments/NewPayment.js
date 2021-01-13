@@ -10,7 +10,8 @@ import { getCustomers } from "../../actions/Customers";
 
 class NewPayment extends React.Component {
   static propTypes = {
-    getCustomers: PropTypes.func.isRequired
+    getCustomers: PropTypes.func.isRequired,
+    postPayment: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -27,10 +28,9 @@ class NewPayment extends React.Component {
   }
 
   handleSubmit = (values) => {
-    const { dispatch } = this.props;
-    dispatch(
-      postPayment(values)
-    );
+    this.props.postPayment(values).then(() => {
+      this.setState({ loading: false });
+    });
   };
 
   render() {
@@ -52,4 +52,4 @@ const mapStateToProps = state => ({
   ...state.customers
 });
 
-export default connect(mapStateToProps, { getCustomers })(NewPayment);
+export default connect(mapStateToProps, { getCustomers, postPayment })(NewPayment);

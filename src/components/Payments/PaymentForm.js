@@ -15,19 +15,24 @@ class PaymentForm extends Component {
               loading ? (
                 <Loader />
               ) : (
-                <select className="form-control" name="client">
+                <Field component="select" name="customer" className="form-control">
+                  <option disabled/>
                   {
                     customers.length ? (
-                      customers.map(customer => <option
-                        value={customer.id}>{customer.name} {customer.last_name}</option>)
+                      customers.map(customer => <option value={customer.id}
+                                                        key={customer.id}>{customer.name} {customer.last_name}</option>)
                     ) : null
                   }
-                </select>
+                </Field>
               )
             }
           </div>
           <div className="col-md-6 mb-3">
-            <Field name="card" component={renderedField} type="text" label="Número de Tarjeta:"
+            <Field name="holder_name" component={renderedField} type="text" label="Nombre del Tarjeta Habiente:"
+                   placeholder="Ej. Juan Paco Pedro de la Mar" />
+          </div>
+          <div className="col-md-6 mb-3">
+            <Field name="card_number" component={renderedField} type="text" label="Número de Tarjeta:"
                    placeholder="Ej. 4111111111111111" />
           </div>
         </div>
@@ -37,7 +42,7 @@ class PaymentForm extends Component {
                    placeholder="Ej. 02/28" />
           </div>
           <div className="col-md-3 mb-3">
-            <Field name="cvv" component={renderedField} type="number" label="CVV:"
+            <Field name="cvv2" component={renderedField} type="number" label="CVV:"
                    placeholder="Ej. 117" />
           </div>
           <div className="col-md-3 mb-3">

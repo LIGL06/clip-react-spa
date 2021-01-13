@@ -48,7 +48,7 @@ class EditCustomer extends Component {
     this.setState({ loading: true });
     this.props.putCustomer(request, match.params.id).then(() => {
       this.setState({ loading: false });
-      history.push('/clients');
+      history.push('/customers');
     });
   };
 

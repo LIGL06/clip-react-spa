@@ -76,11 +76,11 @@ export const getPAYMENT = (id) => async (dispatch) => {
   }).catch(error => alert('Error al obtener pago'));
 };
 
-export const postPayment = (payment) => async (dispatch) => {
+export const postPayment = payment => async (dispatch) => {
   payment.device_session_id = localStorage.deviceSessionId;
   console.log(payment);
   dispatch(createPayment(payment));
-  await axios.post(url).then(res => {
+  await axios.post(url, payment).then(res => {
     const payment = res.data;
     dispatch(createPaymentFulfilled(payment));
   }).catch(error => alert('Error al crear pago'));
