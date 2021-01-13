@@ -8,7 +8,6 @@ const Payment = ({ customer }) => (
     <td>{customer.last_name}</td>
     <td>{customer.email}</td>
     <td>{customer.phone_number}</td>
-    <td>{JSON.stringify(customer.address)}</td>
     <td>
       <Link to={`/customers/${customer.id}`}>Editar</Link>
     </td>

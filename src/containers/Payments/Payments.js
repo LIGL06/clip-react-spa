@@ -50,11 +50,7 @@ class Payments extends React.Component {
               payments.length ? (
                 <>
                   {
-                    loading ? (
-                      <Loader />
-                    ) : (
-                      payments.map(customer => <Payment customer={customer} />)
-                    )
+                    payments.map(payment => <Payment payment={payment} key={payment.id} />)
                   }
                 </>
               ) : null

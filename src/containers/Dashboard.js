@@ -3,10 +3,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router';
 // Containers
-import  NewPayment from './Payments/NewPayment';
+import NewPayment from './Payments/NewPayment';
 import NewCustomer from './Customers/NewCustomer';
 import Payments from './Payments/Payments';
 import Customers from './Customers/Customers';
+import Balance from "./Balance";
 // Components
 import Home from '../components/Home';
 import Header from '../components/Header';
@@ -28,10 +29,10 @@ class Dashboard extends React.Component {
               <Switch>
                 <Route path="/new/customer" component={NewCustomer} />
                 <Route path="/new/payment" component={NewPayment} />
-                {/* <Route path="/payments/:id" component={EditPayment} /> */}
                 <Route path="/payments" component={Payments} />
                 <Route path="/customers/:id" component={EditCustomer} />
                 <Route path="/customers" component={Customers} />
+                <Route path="/balance" component={Balance} />
                 <Route path="/" component={() => <Home user={user} />} />
               </Switch>
             </main>

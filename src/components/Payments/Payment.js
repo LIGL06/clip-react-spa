@@ -7,7 +7,7 @@ const Payment = ({ payment }) => (
     <td>{payment.amount}</td>
     <td>{payment.description}</td>
     <td>{payment.order_id}</td>
-    <td>{JSON.stringify(payment.card)}</td>
+    <td>id: {payment.card.holder_name} - {payment.card.card_number} - {payment.card.brand}</td>
   </tr>
 );
 

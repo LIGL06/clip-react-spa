@@ -30,6 +30,7 @@ class NewPayment extends React.Component {
   handleSubmit = (values) => {
     this.props.postPayment(values).then(() => {
       this.setState({ loading: false });
+      this.props.history.push('/payments');
     });
   };
 

@@ -42,7 +42,6 @@ class Customers extends React.Component {
               <th>Apellido</th>
               <th>Email</th>
               <th>Telefono</th>
-              <th>Dirección</th>
             </tr>
             </thead>
             <tbody>
