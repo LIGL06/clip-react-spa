@@ -37,11 +37,7 @@ export const postLogin = action => async (dispatch) => {
       localStorage.token = token;
       localStorage.session = JSON.stringify(session);
       axios.defaults.headers.common['X-Jwt-Token'] = token;
-    } else {
-      dispatch(loginFailed('Ups! hubo un error'));
     }
-  }).catch(() => {
-    dispatch(loginFailed('Ups! hubo un error'));
   });
 };
 // Duck Logout

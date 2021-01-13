@@ -7,6 +7,7 @@ import LoginForm from '../components/LoginForm';
 // Actions
 import { postLogin } from '../actions/Session';
 import Loader from "../components/Loader";
+import Error from "../components/Error";
 
 class Login extends Component {
   state = {
@@ -26,7 +27,7 @@ class Login extends Component {
     postLogin(values).then(() => {
       this.setState({ loading: false });
       history.push('/');
-    });
+    }).catch(error => this.setState({ loading: false, message: error.message }));
   };
 
   render() {
@@ -45,13 +46,7 @@ class Login extends Component {
                   <LoginForm onSubmit={this.handleSubmit} />
                 </div>
               </div>
-              {
-                message ? (
-                  <>
-                    {message}
-                  </>
-                ) : null
-              }
+              <Error message={message} />
               <div className="row">
                 <div className="col-md-5 offset-md-3">
                   <small className="text-muted">

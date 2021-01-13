@@ -17,8 +17,8 @@ import EditCustomer from './Customers/EditCustomer';
 class Dashboard extends React.Component {
   render() {
     const { session } = this.props;
-    if (!session) return <Redirect to="/login" />;
     const { user } = session;
+    if (!user) return <Redirect to="/login" />;
     return (
       <>
         <Header user={user} />
