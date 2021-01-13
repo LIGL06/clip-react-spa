@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { push } from 'connected-react-router';
 // Constants
-const url = 'http://localhost:5001/payments';
+const url = `${process.env.REACT_APP_API_URL}/payments`;
 // Types
 const GET_PAYMENTS = 'GET_PAYMENTS';
 const GET_PAYMENT = 'GET_PAYMENT';

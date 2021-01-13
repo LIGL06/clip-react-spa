@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { push } from 'connected-react-router';
 // Constants
-const url = 'http://localhost:5001/customers';
+const url = `${process.env.REACT_APP_API_URL}/customers`;
 // Types
 const GET_CUSTOMERS = 'GET_CUSTOMERS';
 const GET_CUSTOMER = 'GET_CUSTOMER';

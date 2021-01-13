@@ -1,7 +1,7 @@
 // Deps
 import axios from 'axios';
 // Constants
-const url = 'http://localhost:5001';
+const url = `${process.env.REACT_APP_API_URL}/session`;
 // Types
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -19,18 +19,10 @@ export const loginFulfilled = session => {
     session
   }
 };
-
-export const loginFailed = message => {
-  return {
-    type: LOGIN_FAILED,
-    message
-  }
-};
-
 // Duck Login
 export const postLogin = action => async (dispatch) => {
   dispatch(login());
-  await axios.post(`${url}/session`, action).then(res => {
+  await axios.post(url, action).then(res => {
     if (res.data.token && res.data.session) {
       const { token, session } = res.data;
       dispatch(loginFulfilled(session));

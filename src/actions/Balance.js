@@ -1,7 +1,7 @@
 // Deps
 import axios from 'axios';
 // Constants
-const url = 'http://localhost:5001/payments/balance';
+const url = `${process.env.REACT_APP_API_URL}/payments/balance`;
 // Types
 export const BALANCE_START = 'BALANCE_START';
 export const BALANCE_FAILED = 'BALANCE_FAILED';
