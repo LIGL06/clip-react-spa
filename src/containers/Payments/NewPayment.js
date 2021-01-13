@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 // Components
 import PaymentForm from '../../components/Payments/PaymentForm';
+import Loader from "../../components/Loader";
 // Actions
 import { postPayment } from "../../actions/Payments";
 import { getCustomers } from "../../actions/Customers";
@@ -42,6 +43,11 @@ class NewPayment extends React.Component {
         <hr className="mb-4" />
         <h2>Nuevo Pago</h2>
         <PaymentForm onSubmit={this.handleSubmit} customers={customers} loading={loading} />
+        <div className="row">
+          <div className="col-md-4 offset-md-5">
+            { loading ? <Loader /> : null}
+          </div>
+        </div>
       </>
     );
   }

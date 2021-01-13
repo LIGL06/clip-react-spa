@@ -20,11 +20,12 @@ class NewCustomer extends React.Component {
   };
 
   render() {
+    const { loading } = this.state;
     return (
       <>
         <hr className="mb-4" />
         <h2>Nuevo Cliente</h2>
-        <CustomerForm onSubmit={this.handleSubmit} />
+        <CustomerForm onSubmit={this.handleSubmit} loading={loading} />
       </>
     );
   }
