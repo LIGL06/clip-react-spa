@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-const Sidebar = ({ user }) => (
+const Sidebar = () => (
   <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style={{ height: '100vh' }}>
     <div className="sidebar-sticky pt-3">
       <ul className="nav flex-column">

@@ -37,7 +37,7 @@ class Payments extends React.Component {
           <table className="table table-striped table-sm">
             <thead>
             <tr>
-              <th>#</th>
+              <th>id</th>
               <th>Metodo</th>
               <th>Cantidad</th>
               <th>Descripción</th>
@@ -59,10 +59,10 @@ class Payments extends React.Component {
             }
             </tbody>
           </table>
-          <div className="row">
-            <div className="col-md-4 offset-md-5">
-              {loading ? <Loader /> : null}
-            </div>
+        </div>
+        <div className="row">
+          <div className="col-md-4 offset-md-5">
+            {loading ? <Loader /> : null}
           </div>
         </div>
       </>

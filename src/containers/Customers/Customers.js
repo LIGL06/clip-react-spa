@@ -37,11 +37,12 @@ class Customers extends React.Component {
           <table className="table table-striped table-sm">
             <thead>
             <tr>
-              <th>#</th>
+              <th>id</th>
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Email</th>
               <th>Telefono</th>
+              <th>Acción</th>
             </tr>
             </thead>
             <tbody>
@@ -58,10 +59,10 @@ class Customers extends React.Component {
             }
             </tbody>
           </table>
-          <div className="row">
-            <div className="col-md-4 offset-md-5">
-              {loading ? <Loader /> : null}
-            </div>
+        </div>
+        <div className="row">
+          <div className="col-md-4 offset-md-5">
+            {loading ? <Loader /> : null}
           </div>
         </div>
       </>

@@ -11,14 +11,24 @@ class LoginForm extends Component {
       <form onSubmit={handleSubmit} className="container text-left">
         <div className="row">
           <div className="col-md-12 mb-3">
-            <Field name="name" component={renderedField} type="text" label="Nombre(s):"
-                   placeholder="Paco Pedro de la Mar" validate={[ required ]} />
+            <Field
+              name="name"
+              component={renderedField}
+              type="text"
+              label="Nombre(s):"
+              placeholder="Paco Pedro de la Mar"
+              validate={[required]} />
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 mb-3">
-            <Field name="email" component={renderedField} type="email" label="E-mail:"
-                   placeholder="paco@pedrode.lamar"validate={[ required ]} />
+            <Field
+              name="email"
+              component={renderedField}
+              type="email"
+              label="E-mail:"
+              placeholder="paco@pedrode.lamar"
+              validate={[required]} />
           </div>
         </div>
         <div className="row mt-4">
