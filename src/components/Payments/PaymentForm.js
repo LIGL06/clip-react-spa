@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 // Components
 import { renderedField } from "../renderedField";
 import Loader from "../Loader";
+import Error from "../Error";
 // Validations
 const required = value => value ? undefined : 'Requerido';
 const minLength = min => value =>
@@ -17,7 +18,10 @@ const tooMuch = value =>
 
 class PaymentForm extends Component {
   render() {
-    const { error, handleSubmit, customers, loading, pure, dirty } = this.props;
+    const {
+      error, handleSubmit, customers,
+      loading, message, pure, dirty
+    } = this.props;
     return (
       <form onSubmit={handleSubmit} className="container">
         <div className="row">
@@ -31,14 +35,17 @@ class PaymentForm extends Component {
                   <option disabled />
                   {
                     customers.length ? (
-                      customers.map(customer => <option value={customer.id}
-                                                        key={customer.id}>{customer.name} {customer.last_name}</option>)
+                      customers.map(customer => <option
+                        value={customer.id}
+                        key={customer.id}>{customer.name} {customer.last_name}</option>)
                     ) : null
                   }
                 </Field>
               )
             }
           </div>
+        </div>
+        <div className="row">
           <div className="col-md-6 mb-3">
             <Field name="holder_name" component={renderedField} type="text" label="Nombre del Tarjeta Habiente:"
                    placeholder="Ej. Juan Paco Pedro de la Mar" validate={[required]} />
@@ -71,6 +78,7 @@ class PaymentForm extends Component {
         </div>
 
         <hr className="mb-4" />
+        {message && <Error message={message} />}
         <div className="row mt-5">
           <div className="offset-md-10">
             {

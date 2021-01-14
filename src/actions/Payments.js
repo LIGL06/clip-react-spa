@@ -1,6 +1,5 @@
 // Deps
 import axios from 'axios';
-import { push } from 'connected-react-router';
 // Constants
 const url = `${process.env.REACT_APP_API_URL}/payments`;
 // Types
@@ -65,7 +64,7 @@ export const getPayments = () => async (dispatch) => {
   await axios.get(url).then(res => {
     const payments = res.data;
     dispatch(fetchPaymentsFulfilled(payments));
-  }).catch(error => alert('Error al obtener pagos'));
+  });
 };
 
 export const getPAYMENT = (id) => async (dispatch) => {
@@ -73,7 +72,7 @@ export const getPAYMENT = (id) => async (dispatch) => {
   await axios.get(`${url}/${id}`).then(res => {
     const payment = res.data;
     dispatch(fetchPaymentFulfilled(payment));
-  }).catch(error => alert('Error al obtener pago'));
+  });
 };
 
 export const postPayment = payment => async (dispatch) => {
@@ -82,7 +81,7 @@ export const postPayment = payment => async (dispatch) => {
   await axios.post(url, payment).then(res => {
     const payment = res.data;
     dispatch(createPaymentFulfilled(payment));
-  }).catch(error => alert('Error al crear pago'));
+  });
 };
 
 // Duck Update User
@@ -90,8 +89,7 @@ export const putUpdate = (action, userId) => async (dispatch) => {
   dispatch(updatePayment());
   return axios.put(`${url}/${userId}`, action).then(res => {
     dispatch(updatePaymentFulfilled(res.data));
-    dispatch(push('/payments'));
-  }).catch(error => alert('Error al actualizar pago'));
+  });
 };
 
 export default function (state = { loading: true, payments: [], payment: {} }, action) {

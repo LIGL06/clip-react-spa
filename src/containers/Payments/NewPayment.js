@@ -24,25 +24,32 @@ class NewPayment extends React.Component {
   componentDidMount() {
     this.props.getCustomers().then(() => {
       this.setState({ loading: false });
-    });
+    }).catch(error => this.setState({ loading: false, message: error.message }));
   }
 
   handleSubmit = (values) => {
+    const { postPayment, history } = this.props;
     this.setState({ loading: true });
-    this.props.postPayment(values).then(() => {
+    postPayment(values).then(() => {
       this.setState({ loading: false });
-      this.props.history.push('/payments');
+      history.push('/payments');
+    }).catch((error) => {
+      this.setState({ loading: false, message: error.response.data || error.message })
     });
   };
 
   render() {
     const { customers } = this.props;
-    const { loading } = this.state;
+    const { loading, message } = this.state;
     return (
       <>
         <hr className="mb-4" />
         <h2>Nuevo Pago</h2>
-        <PaymentForm onSubmit={this.handleSubmit} customers={customers} loading={loading} />
+        <PaymentForm
+          onSubmit={this.handleSubmit}
+          customers={customers}
+          loading={loading}
+          message={message} />
       </>
     );
   }
