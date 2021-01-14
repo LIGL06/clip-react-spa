@@ -13,26 +13,29 @@ class NewCustomer extends React.Component {
   };
 
   handleSubmit = (values) => {
-    const { dispatch } = this.props;
-    dispatch(
-      postCustomer(values)
-    );
+    const { postCustomer, history } = this.props;
+    this.setState({ loading: true });
+    postCustomer(values).then(() => {
+      this.setState({ loading: false });
+      history.push('/customers');
+    }).catch(error => this.setState({ loading: false, message: error.message }));
   };
 
   render() {
-    const { loading } = this.state;
+    const { loading, message } = this.state;
     return (
       <>
         <hr className="mb-4" />
         <h2>Nuevo Cliente</h2>
-        <CustomerForm onSubmit={this.handleSubmit} loading={loading} />
+        <CustomerForm onSubmit={this.handleSubmit} loading={loading} message={message} />
       </>
     );
   }
+
 }
 
 const mapStateToProps = (state) => ({
   customer: state.customer
 });
 
-export default connect(mapStateToProps)(NewCustomer);
+export default connect(mapStateToProps, { postCustomer })(NewCustomer);

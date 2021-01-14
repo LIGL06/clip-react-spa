@@ -78,7 +78,6 @@ export const getPAYMENT = (id) => async (dispatch) => {
 
 export const postPayment = payment => async (dispatch) => {
   payment.device_session_id = localStorage.deviceSessionId;
-  console.log(payment);
   dispatch(createPayment(payment));
   await axios.post(url, payment).then(res => {
     const payment = res.data;

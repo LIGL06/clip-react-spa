@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 // Components
 import { renderedField } from "../renderedField";
 import Loader from "../Loader";
+import Error from "../Error";
 // Validations
 const required = value => value ? undefined : 'Requerido';
 const email = value =>
@@ -16,7 +17,10 @@ const minLength10 = minLength(10);
 
 class CustomerForm extends Component {
   render() {
-    const { error, handleSubmit, pure, dirty, loading } = this.props;
+    const {
+      error, handleSubmit, pure,
+      dirty, loading, message
+    } = this.props;
     return (
       <form onSubmit={handleSubmit} className="container">
         <div className="row">
@@ -41,12 +45,20 @@ class CustomerForm extends Component {
         </div>
 
         <hr className="mb-4" />
+        {message && <Error message={message} />}
         <div className="row mt-5">
-          <Loader />
-          <button type="submit" className="btn btn-md btn-primary offset-md-10"
-                  disabled={loading || (pure && !dirty)}>Guardar Cliente
-          </button>
-          {error && <strong>{error}</strong>}
+          <div className="offset-md-10">
+            {
+              loading ? (
+                <Loader />
+              ) : (
+                <button type="submit" className="btn btn-md btn-primary"
+                        disabled={loading || (pure && !dirty)}>Guardar Pago
+                </button>
+              )
+            }
+            {error && <strong>{error}</strong>}
+          </div>
         </div>
       </form>
     );
