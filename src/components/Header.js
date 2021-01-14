@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { SessionActions } from "../actions/Session";
 
 const Header = ({ user }) => (
-  <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow ">
-    <Link to="/" className="navbar-brand col-md-3 col-lg-2 mr-0 px-3">
+  <nav className="navbar sticky-top flex-md-nowrap p-0 shadow " style={{ background: 'rgb(252, 76, 2)' }}>
+    <Link to="/" className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" style={{ color: '#fff' }}>
       <i className="far fa-user" />
       <span>&nbsp;{user.name}</span>
     </Link>
