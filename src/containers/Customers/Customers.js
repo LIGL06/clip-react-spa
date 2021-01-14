@@ -52,7 +52,9 @@ class Customers extends React.Component {
                     customers.map(customer => <Customer customer={customer} key={customer.id} />)
                   }
                 </>
-              ) : null
+              ) : <tr>
+                <td colSpan="5">No hay clientes...</td>
+              </tr>
             }
             </tbody>
           </table>

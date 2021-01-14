@@ -53,7 +53,9 @@ class Payments extends React.Component {
                     payments.map(payment => <Payment payment={payment} key={payment.id} />)
                   }
                 </>
-              ) : null
+              ) : <tr>
+                <td colSpan="6">No hay pagos...</td>
+              </tr>
             }
             </tbody>
           </table>

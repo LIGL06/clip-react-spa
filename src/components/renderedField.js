@@ -5,7 +5,13 @@ export const renderedField = ({ input, label, placeholder, type, defaultValue, m
     <label>{label}</label>
     <div>
       <input {...input} placeholder={placeholder} defaultValue={defaultValue} type={type} className="form-control" />
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {
+        touched && (warning || error) ? (
+          <div style={{ color: '#721c24' }} className="mt-2">
+            {warning || error}
+          </div>
+        ) : null
+      }
     </div>
   </div>
 );

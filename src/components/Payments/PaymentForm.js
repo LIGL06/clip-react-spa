@@ -1,8 +1,10 @@
+// Deps
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+// Components
 import { renderedField } from "../renderedField";
 import Loader from "../Loader";
-
+// Validations
 const required = value => value ? undefined : 'Requerido';
 const minLength = min => value =>
   value && value.length < min ? `Must be ${min} characters as min` : undefined
@@ -10,6 +12,8 @@ const minLength15 = minLength(15)
 const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined
 const maxLength16 = maxLength(16)
+const tooMuch = value =>
+  value && value > 999.99 ? 'You might be too rich for this' : undefined
 
 class PaymentForm extends Component {
   render() {
@@ -55,7 +59,7 @@ class PaymentForm extends Component {
           </div>
           <div className="col-md-3 mb-3">
             <Field name="amount" component={renderedField} type="number" label="Cantidad:"
-                   placeholder="Ej. 999.99" validate={[required]} />
+                   placeholder="Ej. 999.99" validate={[required]} warn={tooMuch} />
           </div>
         </div>
 
@@ -68,10 +72,18 @@ class PaymentForm extends Component {
 
         <hr className="mb-4" />
         <div className="row mt-5">
-          <button type="submit" className="btn btn-md btn-primary offset-md-10"
-                  disabled={loading || (pure && !dirty)}>Guardar Pago
-          </button>
-          {error && <strong>{error}</strong>}
+          <div className="offset-md-10">
+            {
+              loading ? (
+                <Loader />
+              ) : (
+                <button type="submit" className="btn btn-md btn-primary"
+                        disabled={loading || (pure && !dirty)}>Guardar Pago
+                </button>
+              )
+            }
+            {error && <strong>{error}</strong>}
+          </div>
         </div>
       </form>
     );
