@@ -2,6 +2,24 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This React.js app uses [Openpay-client](https://www.openpay.mx/docs/openpayjs.html) and [Openpay-Antifraud](https://www.openpay.mx/docs/fraud-tool.html) to handle all the creation of customers, payments and a summary of a sandbox account.
+
+This app also handles all the HTTP Requests with [axios](https://github.com/axios/axios) targeting this [Express](https://github.com/LIGL06/clip-express-api) app.
+Including [redux-form](https://github.com/redux-form/redux-form) to handle the forms and inputs.
+
+## Running Locally
+
+Make sure you have [Node.js](http://nodejs.org/) and [yarn](https://github.com/yarnpkg/yarn) installed (12.11+, 1.73+ respectevly).
+
+```sh
+git clone https://github.com/LIGL06/clip-react-spa.git
+cd clip-react-spa
+cp .env.dev .env
+yarn
+yarn start
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
